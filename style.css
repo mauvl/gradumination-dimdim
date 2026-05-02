@@ -114,15 +114,12 @@ body {
 .btn-primary {
   background: #ffcd3c;
   border: none;
-  padding: 12px 24px;
-  border-radius: 60px;
+  padding: 10px 20px;
+  border-radius: 40px;
   font-weight: bold;
-  font-size: 1rem;
   color: #0a2f6c;
-  margin-top: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 5px 0 #b47c00;
 }
 
 .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 #b47c00; }
@@ -139,7 +136,7 @@ body {
 
 /* Intro */
 .intro-gif {
-  width: 180px;
+  width: 450px;
   border-radius: 30px;
   background: #fff0b5;
   padding: 5px;

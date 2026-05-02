@@ -34,38 +34,66 @@
     <div class="gif-area">
       <img id="introGif" src="./assets/gif/excited.gif" alt="intro gif" class="intro-gif">
     </div>
-    <h1 class="yellow-glow">Happy Graduation Dimdim!</h1>
-    <p class="intro-text">someone made this tiny chaotic universe just for you. 💛</p>
-    <button id="startAdventureBtn" class="btn-primary pulse-btn">Open It 💛</button>
+    <h1 class="yellow-glow">Happy Graduation Dimdim! 🎓</h1>
+    <p class="intro-text">someone made this tiny chaotic universe just for u!</p>
+    <br>
+    <button id="startAdventureBtn" class="btn-primary pulse-btn">open it 💛</button>
   </div>
 </div>
 
 <!-- PAGE 2 - MINI GAME (Catch Minion) -->
 <div id="page2" class="page">
   <div class="container game-container">
-    <h2><i class="fas fa-gamepad"></i> TANGKAP MINION!</h2>
-    <p class="game-desc">kejar & klik si minion secepat mungkin! target: 10 titik dalam 15 detik 🕹️</p>
+    <h2><i class="fas fa-gamepad"></i> MAIN DULU YAA! AYO TANGKAP BOB!</h2>
+    <p class="game-desc">kejar & klik si minion bob secepat mungkin yaak! target: 15 titik dalam 15 detik 🕹️</p>
     <div class="game-stats">
       <div class="score-box">🎯 Skor: <span id="gameScore">0</span></div>
       <div class="timer-box">⏱️ Waktu: <span id="gameTimer">0</span> s</div>
     </div>
     <div id="gameArea" class="game-area">
-      <div id="minionCharacter" class="minion-target">🐣</div>
+      <div id="minionCharacter" class="minion-target"></div>   <!-- kosong, gambar via CSS -->
     </div>
     <div class="game-buttons">
-      <button id="startGameBtn" class="btn-secondary">▶ Mulai Game</button>
-      <button id="gameNextBtn" class="btn-primary" style="display: none;">✨ Lanjut ke Pertanyaan ✨</button>
+      <button id="startGameBtn" class="btn-secondary">mulai game</button>
+      <button id="gameNextBtn" class="btn-primary" style="display: none;">next</button>
+      <br>
+      <br>
+      <br>
       <div id="gameMessage" class="game-message"></div>
     </div>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
+
+<style>
+/* gaya tambahan untuk gambar background */
+.minion-target {
+  width: 80px;
+  height: 80px;
+  background-image: url('assets/bobgame.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  text-indent: -9999px;   /* menyembunyikan teks jika ada */
+  font-size: 0;
+  /* biar bisa diposisi absolute oleh game */
+  position: absolute;
+  /* sesuaikan border-radius dll */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.05s ease;
+}
+.minion-target:active {
+  transform: scale(0.95);
+}
+</style>
 
 <!-- PAGE 3 - YES/NO + GIF ROTASI (5 GIF LOOP) -->
 <div id="page3" class="page">
   <div class="container question-container">
     <div class="gif-rotator">
       <img id="rotatingGif" src="https://media.tenor.com/mE6C2_0AABAAAAAC/minion-love.gif" alt="funny gif">
+
     </div>
     <div class="question-bubble">
       <p id="coreQuestion">Hei, boleh nggak aku jadi orang yang paling kamu banggain di hari spesialmu? 🥺💙</p>

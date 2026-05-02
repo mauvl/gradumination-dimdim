@@ -86,11 +86,11 @@ function startGame() {
       clearInterval(moveInterval);
       gameActive = false;
       minion.style.display = 'none';
-      if (score >= 10) {
-        gameMsg.innerText = '🎉 SELAMAT! Kamu menang! lanjut yuk! 🎉';
+      if (score >= 15) {
+        gameMsg.innerText = '🎉 CONGRATS! kamu menang! lanjut dengg! 🎉';
         gameNextBtn.style.display = 'inline-block';
       } else {
-        gameMsg.innerText = '😭 Kalah! target 10, coba ulang lagi! klik "Mulai Game"';
+        gameMsg.innerText = '😭 yaaa nub! target nyaaa 15, ulang lagii yakk, semangattt! klik "mulai game"';
       }
     }
   }, 1000);
@@ -111,11 +111,11 @@ minion.addEventListener('click', (e) => {
   score++;
   scoreSpan.innerText = score;
   moveMinionRandom();
-  if (score >= 10 && gameActive) {
+  if (score >= 15 && gameActive) {
     clearInterval(gameInterval);
     clearInterval(moveInterval);
     gameActive = false;
-    gameMsg.innerText = '🎉 HORE MENANG! 🎉';
+    gameMsg.innerText = '🎉 YAYYY MENANNGGG!!! 🎉';
     gameNextBtn.style.display = 'inline-block';
     minion.style.display = 'none';
   }
@@ -125,11 +125,11 @@ gameNextBtn.addEventListener('click', () => showPage(3));
 
 // ---------- PAGE 3 : YES/NO LOGIC + 5 GIF ROTATION ----------
 const gifList = [
-  "https://media.tenor.com/mE6C2_0AABAAAAAC/minion-love.gif",
-  "https://media1.tenor.com/m/JkO34nxg-fkAAAAC/minion-despicable-me.gif",
-  "https://media.tenor.com/2cmnEdrQGrYAAAAj/minion-happy.gif",
-  "https://media4.giphy.com/media/26gR2qEPeGjpCQYdG/giphy.gif",
-  "https://media.tenor.com/-a4M7c0qA_0AAAAC/minion-stuart.gif"
+  "./assets/mimo.gif",
+  "./assets/what.gif",
+  "./assets/fighting.gif",
+  "./assets/bewan.gif",
+  "./assets/sad.gif"
 ];
 let gifIndex = 0;
 const rotatingImg = document.getElementById('rotatingGif');
