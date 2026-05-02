@@ -143,7 +143,7 @@ const yesBtn = document.getElementById('yesBtn');
 const yesNotif = document.getElementById('yesNotification');
 const afterYes = document.getElementById('afterYesNextBtn');
 const noTexts = [
-  "seriusan ini ngeklik no?!!?", "jahat ah 😭", "cepet klik yes ga! atau aku gigit 👻",
+  "seriusan ini ngeklik no?!!?", "jahat", "cepet klik yes ga! atau aku gigit",
   "masa sih no? pilih yes dong", "plis yes, aku mohon 🥺", "gaboleh no, coba lagi!"
 ];
 let noClickCount = 0;
