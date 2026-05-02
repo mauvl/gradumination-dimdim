@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Gradumination • for dimdim</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+  <div class="loader-content">
+    <div class="minion-eye"></div>
+    <p>loading... ✨</p>
+    <div class="progress-dots"><span>.</span><span>.</span><span>.</span></div>
+  </div>
+</div>
+
+<!-- MUSIC CONTROL (otomatis play setelah user interaksi pertama) -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="./assets/somh.mp3" type="audio/mpeg">
+</audio>
+<div id="musicControl">
+  <i class="fas fa-music" id="musicIcon"></i>
+  <span id="musicStatus">musik nyala</span>
+</div>
+
+<!-- PAGE 1 - INTRO -->
+<div id="page1" class="page active-page">
+  <div class="container intro-container">
+    <div class="gif-area">
+      <img id="introGif" src="./assets/gif/excited.gif" alt="intro gif" class="intro-gif">
+    </div>
+    <h1 class="yellow-glow">Happy Graduation Dimdim!</h1>
+    <p class="intro-text">someone made this tiny chaotic universe just for you. 💛</p>
+    <button id="startAdventureBtn" class="btn-primary pulse-btn">Open It 💛</button>
+  </div>
+</div>
+
+<!-- PAGE 2 - MINI GAME (Catch Minion) -->
+<div id="page2" class="page">
+  <div class="container game-container">
+    <h2><i class="fas fa-gamepad"></i> TANGKAP MINION!</h2>
+    <p class="game-desc">kejar & klik si minion secepat mungkin! target: 10 titik dalam 15 detik 🕹️</p>
+    <div class="game-stats">
+      <div class="score-box">🎯 Skor: <span id="gameScore">0</span></div>
+      <div class="timer-box">⏱️ Waktu: <span id="gameTimer">0</span> s</div>
+    </div>
+    <div id="gameArea" class="game-area">
+      <div id="minionCharacter" class="minion-target">🐣</div>
+    </div>
+    <div class="game-buttons">
+      <button id="startGameBtn" class="btn-secondary">▶ Mulai Game</button>
+      <button id="gameNextBtn" class="btn-primary" style="display: none;">✨ Lanjut ke Pertanyaan ✨</button>
+      <div id="gameMessage" class="game-message"></div>
+    </div>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 3 - YES/NO + GIF ROTASI (5 GIF LOOP) -->
+<div id="page3" class="page">
+  <div class="container question-container">
+    <div class="gif-rotator">
+      <img id="rotatingGif" src="https://media.tenor.com/mE6C2_0AABAAAAAC/minion-love.gif" alt="funny gif">
+    </div>
+    <div class="question-bubble">
+      <p id="coreQuestion">Hei, boleh nggak aku jadi orang yang paling kamu banggain di hari spesialmu? 🥺💙</p>
+    </div>
+    <div class="yesno-wrapper">
+      <button id="yesBtn" class="yes-btn">YES 💛</button>
+      <button id="noBtn" class="no-btn">NO 😈</button>
+    </div>
+    <div id="yesNotification" class="notif-hidden">
+      <p>🎉 YEAY! akhirnya kamu pencet YES! kamu pilihan tepat 💛<br>❤️ 🔓</p>
+      <button id="afterYesNextBtn" class="btn-primary">LANJUT KE SURAT 💌</button>
+    </div>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 4 - SURAT + TYPING -->
+<div id="page4" class="page">
+  <div class="container letter-container">
+    <div class="envelope-area" id="envelopeArea">
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">✉️</div>
+      </div>
+      <p class="click-hint">Klik amplopnya untuk membuka surat rahasia!</p>
+    </div>
+    <div id="letterContent" class="letter-content hidden-letter">
+      <div class="stamp">💌 GRADUATION</div>
+      <div id="typewriterText" class="typing-effect"></div>
+      <div class="letter-gallery">
+        <img src="https://media4.giphy.com/media/26gR2qEPeGjpCQYdG/giphy.gif?cid=790b7611cbyc4yf86nz15w7fnf7k10j9h6u25c78gt2rblnt&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="minion happy">
+        <img src="https://media.tenor.com/2cmnEdrQGrYAAAAj/minion-happy.gif" alt="minion dance">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <button id="letterNextBtn" class="btn-primary bounce-soft">💐 Lanjut ke Bucket Bunga 💐</button>
+    </div>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 5 - BUNGA BUCKET CANVAS -->
+<div id="page5" class="page">
+  <div class="container flower-container">
+    <h2>🌸 SELAMAT GRADUASI! 🌸</h2>
+    <canvas id="flowerCanvas" width="300" height="300"></canvas>
+    <p class="flower-caption">se-bucket bunga spesial untukmu ✨</p>
+    <button id="flowerNextBtn" class="btn-primary">➡️ Lanjut ke Kuis Seru ⬅️</button>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 6 - KUIS 5 PERTANYAAN -->
+<div id="page6" class="page">
+  <div class="container quiz-container">
+    <h2><i class="fas fa-clipboard-list"></i> QUIZ: SEBERAPA KAMU KENAL?</h2>
+    <div id="quizArea"></div>
+    <button id="submitQuizBtn" class="btn-secondary">✨ Hitung Hasil ✨</button>
+    <div id="quizResult" class="quiz-result-area"></div>
+    <button id="quizNextBtn" class="btn-primary" style="display: none;">💬 Lanjut ke Pesan & Kesan 💬</button>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 7 - PESAN KESAN -->
+<div id="page7" class="page">
+  <div class="container message-container">
+    <h2><i class="fas fa-pen-fancy"></i> tinggalkan pesan kesan dong 💌</h2>
+    <textarea id="userMessage" rows="4" placeholder="Tulis sesuatu buat Dara... misal: 'makasih ya web lucu banget!'"></textarea>
+    <button id="sendMsgBtn" class="btn-primary">Kirim Pesan ✨</button>
+    <div id="msgFeedback"></div>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- PAGE 8 - CLOSING -->
+<div id="page8" class="page">
+  <div class="container closing-container">
+    <div class="confetti-zone"><i class="fas fa-heart"></i><i class="fas fa-graduation-cap"></i><i class="fas fa-crown"></i></div>
+    <h1 class="closing-title">TERIMA KASIH SUDAH MENJELAJAHI WEB INI 💛🧢</h1>
+    <div class="closing-message">
+      <p>Dara benar-benar happy bisa bikin ini buat kamu. Semangat terus di babak baru! jangan lupa bahagia yaa.</p>
+      <div class="mini-minion">🐥🐥🐥</div>
+    </div>
+    <button id="restartFunBtn" class="btn-secondary">🔄 ulang petualangan?</button>
+  </div>
+  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
