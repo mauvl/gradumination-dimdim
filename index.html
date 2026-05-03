@@ -10,16 +10,23 @@
 </head>
 <body>
 
+<!-- BACKGROUND ANIMASI (full screen) -->
+<div class="bg-animation" id="bgAnimation">
+  <span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span>
+  <span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span>
+  <span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span><span>🎓</span>
+</div>
+
 <!-- LOADING SCREEN -->
 <div id="loadingScreen">
   <div class="loader-content">
     <div class="minion-eye"></div>
-    <p>loading... ✨</p>
+    <p>loading... ✨🎓</p>
     <div class="progress-dots"><span>.</span><span>.</span><span>.</span></div>
   </div>
 </div>
 
-<!-- MUSIC CONTROL (otomatis play setelah user interaksi pertama) -->
+<!-- MUSIC CONTROL -->
 <audio id="bgMusic" loop preload="auto">
   <source src="./assets/somh.mp3" type="audio/mpeg">
 </audio>
@@ -41,76 +48,90 @@
   </div>
 </div>
 
-<!-- PAGE 2 - MINI GAME (Catch Minion) -->
-<div id="page2" class="page">
-  <div class="container game-container">
-    <h2><i class="fas fa-gamepad"></i> MAIN DULU YAA! AYO TANGKAP BOB!</h2>
-    <p class="game-desc">kejar & klik si minion bob secepat mungkin yaak! target: 15 titik dalam 15 detik 🕹️</p>
-    <div class="game-stats">
-      <div class="score-box">🎯 Skor: <span id="gameScore">0</span></div>
-      <div class="timer-box">⏱️ Waktu: <span id="gameTimer">0</span> s</div>
+<!-- PAGE 1b - PIN -->
+<div id="page1b" class="page">
+  <div class="container pin-container">
+    <h2>🔐 Masukin PIN dulu yaak!</h2>
+    <p class="pin-subtitle">rahasia banget, cuma kamu yang tau xixi 😏</p>
+    <div class="pin-display">
+      <input type="password" id="pinInput" maxlength="6" placeholder="6 digit" class="pin-input">
+      <div id="pinMessage" class="pin-message">tulis tanggal lahir kamu dong... 🤫</div>
     </div>
-    <div id="gameArea" class="game-area">
-      <div id="minionCharacter" class="minion-target"></div>   <!-- kosong, gambar via CSS -->
-    </div>
-    <div class="game-buttons">
-      <button id="startGameBtn" class="btn-secondary">mulai game</button>
-      <button id="gameNextBtn" class="btn-primary" style="display: none;">next</button>
-      <br>
-      <br>
-      <br>
-      <div id="gameMessage" class="game-message"></div>
-    </div>
+    <button id="pinSubmitBtn" class="btn-primary">kirim 🌟</button>
+    <div id="pinError" class="pin-error"></div>
+    <div class="pin-decor"><i class="fas fa-lock"></i></div>
   </div>
 </div>
 
-<style>
-/* gaya tambahan untuk gambar background */
-.minion-target {
-  width: 80px;
-  height: 80px;
-  background-image: url('assets/bobgame.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  text-indent: -9999px;   /* menyembunyikan teks jika ada */
-  font-size: 0;
-  /* biar bisa diposisi absolute oleh game */
-  position: absolute;
-  /* sesuaikan border-radius dll */
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.05s ease;
-}
-.minion-target:active {
-  transform: scale(0.95);
-}
-</style>
+<!-- PAGE 2 - MINI GAME (UPDATE) -->
+<div id="page2" class="page">
+  <div class="container game-container">
+    <!-- Header lucu -->
+    <div class="game-header">
+      <h2><i class="fas fa-gamepad"></i> MAIN DULU YAA! <br> AYO TANGKAP BOB! 🐻</h2>
+      <p class="game-desc">kejar & klik si Minion Bob secepat mungkin! <br> 🎯 target: <strong>15 titik dalam 15 detik</strong></p>
+    </div>
 
-<!-- PAGE 3 - YES/NO + GIF ROTASI (5 GIF LOOP) -->
+    <!-- Arena permainan (biru muda, tanpa rumput) -->
+    <div id="gameArea" class="game-area">
+      <div id="minionCharacter" class="minion-target"></div>
+    </div>
+
+    <!-- Stats: Skor & Waktu -->
+    <div class="game-stats">
+      <div class="stat-card">
+        <span class="stat-icon">🎯</span>
+        <span class="stat-label">Skor</span>
+        <span class="stat-value" id="gameScore">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-label">Waktu</span>
+        <span class="stat-value" id="gameTimer">15</span>
+      </div>
+    </div>
+
+    <!-- Tombol aksi (ukuran pas) -->
+    <div class="game-buttons">
+      <button id="startGameBtn" class="btn-game-start">mulai game 🕹️</button>
+      <button id="gameNextBtn" class="btn-primary" style="display: none;">next ➡️</button>
+    </div>
+
+    <!-- Pesan hasil -->
+    <div id="gameMessage" class="game-message"></div>
+  </div>
+</div>
+
+<!-- PAGE 3 - YES/NO (DESIGN BARU) -->
 <div id="page3" class="page">
   <div class="container question-container">
+    <!-- GIF area diperbesar -->
     <div class="gif-rotator">
       <img id="rotatingGif" src="./assets/gif/mimo.gif" alt="funny gif">
+    </div>
 
-    </div>
+    <!-- Pertanyaan manis -->
     <div class="question-bubble">
-      <p id="coreQuestion">Hei, boleh nggak aku jadi orang yang paling kamu banggain di hari spesialmu? 🥺💙</p>
+      <p id="coreQuestion">ngaku de kamu pasti suka sama aku kan, fans berat aku bgttt kannn, ngakuu ajaa jan gengsi deee :b (clue : coba klik no terus deh xixixi)</p>
     </div>
+
+    <!-- Pesan interaksi -->
+    <div id="interactionMessage" class="interaction-message">ayo jujur ajaa... 😏</div>
+
+    <!-- Tombol YES/NO -->
     <div class="yesno-wrapper">
       <button id="yesBtn" class="yes-btn">aku si yes 💛</button>
       <button id="noBtn" class="no-btn">gx 😈</button>
     </div>
-    <div id="yesNotification" class="notif-hidden">
-      <p>🎉 YEAY! akhirnya kamu pencet YES! kamu pilihan tepat 💛<br>❤️ 🔓</p>
-      <button id="afterYesNextBtn" class="btn-primary">LANJUT KE SURAT 💌</button>
+
+    <!-- Next setelah yes -->
+    <div class="next-area">
+      <button id="afterYesNextBtn" class="btn-primary" style="display: none;">next 💌</button>
     </div>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
 
-<!-- PAGE 4 - SURAT + TYPING -->
+<!-- PAGE 4 - SURAT -->
 <div id="page4" class="page">
   <div class="container letter-container">
     <div class="envelope-area" id="envelopeArea">
@@ -118,68 +139,82 @@
         <div class="envelope-flap"></div>
         <div class="envelope-body">✉️</div>
       </div>
-      <p class="click-hint">Klik amplopnya untuk membuka surat rahasia!</p>
+      <p class="click-hint">klik amplopnya untuk membuka surat rahasiaaaa!</p>
     </div>
     <div id="letterContent" class="letter-content hidden-letter">
-      <div class="stamp">💌 GRADUATION</div>
+      <div class="stamp">Dear dimdim 👦🏻🤍</div>
       <div id="typewriterText" class="typing-effect"></div>
-      <div class="letter-gallery">
-        <img src="https://media4.giphy.com/media/26gR2qEPeGjpCQYdG/giphy.gif?cid=790b7611cbyc4yf86nz15w7fnf7k10j9h6u25c78gt2rblnt&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="minion happy">
-        <img src="https://media.tenor.com/2cmnEdrQGrYAAAAj/minion-happy.gif" alt="minion dance">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
-      <button id="letterNextBtn" class="btn-primary bounce-soft">💐 Lanjut ke Bucket Bunga 💐</button>
+      <br>
+      <button id="letterNextBtn" class="btn-primary bounce-soft">next ➡️</button>
     </div>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
 
-<!-- PAGE 5 - BUNGA BUCKET CANVAS -->
+<!-- PAGE 5 - MINION FRIENDS -->
 <div id="page5" class="page">
-  <div class="container flower-container">
-    <h2>🌸 SELAMAT GRADUASI! 🌸</h2>
-    <canvas id="flowerCanvas" width="300" height="300"></canvas>
-    <p class="flower-caption">se-bucket bunga spesial untukmu ✨</p>
-    <button id="flowerNextBtn" class="btn-primary">➡️ Lanjut ke Kuis Seru ⬅️</button>
+  <div class="container minion-friends-container">
+    <h2></i>Eitsss temen temen kecil aku mau ngucapin kamu sesuatu juga niii 🐥</h2>
+    <br>
+    <p class="subtitle">geser atau klik panah buat lihat pesan mereka satu-satu yaaaa!</p>
+    <br>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev-btn" id="prevMinionBtn"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-track" id="carouselTrack"></div>
+      </div>
+      <button class="carousel-btn next-btn" id="nextMinionBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <button id="minionNextBtn" class="btn-primary" style="margin-top: 20px;">next 🎁</button>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
 
-<!-- PAGE 6 - KUIS 5 PERTANYAAN -->
+<!-- PAGE 6 - KOTAK HADIAH -->
 <div id="page6" class="page">
-  <div class="container quiz-container">
-    <h2><i class="fas fa-clipboard-list"></i> QUIZ: SEBERAPA KAMU KENAL?</h2>
-    <div id="quizArea"></div>
-    <button id="submitQuizBtn" class="btn-secondary">✨ Hitung Hasil ✨</button>
-    <div id="quizResult" class="quiz-result-area"></div>
-    <button id="quizNextBtn" class="btn-primary" style="display: none;">💬 Lanjut ke Pesan & Kesan 💬</button>
+  <div class="container gift-container">
+    <h2></i>taraaa aku punya hadiah buat kamu! 😃🎁</h2>
+    <p class="gift-sub">ada tiga hadiah kejutan buat kamuu, buka satu‑satu yaaa!</p>
+    <div class="gift-boxes" id="giftBoxes">
+      <div class="gift-box" data-index="0"><div class="box-icon">🎁</div><p>Hadiah #1</p></div>
+      <div class="gift-box" data-index="1"><div class="box-icon">🎁</div><p>Hadiah #2</p></div>
+      <div class="gift-box" data-index="2"><div class="box-icon">🎁</div><p>Hadiah #3</p></div>
+    </div>
+    <div id="giftDetail" class="gift-detail" style="display: none;">
+      <img id="giftDetailImg" src="" alt="gift image" class="gift-img">
+      <p id="giftDetailText" class="gift-text"></p>
+      <button id="giftBackBtn" class="btn-secondary">◀ Kembali ke kotak</button>
+    </div>
+    <button id="giftNextBtn" class="btn-primary" style="display: none;">next</button>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
 
-<!-- PAGE 7 - PESAN KESAN -->
-<div id="page7" class="page">
-  <div class="container message-container">
-    <h2><i class="fas fa-pen-fancy"></i> tinggalkan pesan kesan dong 💌</h2>
-    <textarea id="userMessage" rows="4" placeholder="Tulis sesuatu buat Dara... misal: 'makasih ya web lucu banget!'"></textarea>
-    <button id="sendMsgBtn" class="btn-primary">Kirim Pesan ✨</button>
-    <div id="msgFeedback"></div>
+<!-- PAGE 7b - GALERI -->
+<div id="page7b" class="page">
+  <div class="container gallery-container">
+    <h2></i> 🏛️ Mini Museum Wisuda Dimdim 🏛️</h2>
+    <p class="gallery-sub">selamat semuaaa dimdim dirayakannn 🥳🥳</p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <button id="galleryNextBtn" class="btn-primary">Selesai 🎉</button>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
 </div>
 
 <!-- PAGE 8 - CLOSING -->
 <div id="page8" class="page">
   <div class="container closing-container">
-    <div class="confetti-zone"><i class="fas fa-heart"></i><i class="fas fa-graduation-cap"></i><i class="fas fa-crown"></i></div>
-    <h1 class="closing-title">TERIMA KASIH SUDAH MENJELAJAHI WEB INI 💛🧢</h1>
+    <h1 class="closing-title">TERIMAKACIII SUDAAA MENJELAJAHII WEB INIII 🙆🏻‍♀️🙆🏻‍♀️🙆🏻‍♀️</h1>
     <div class="closing-message">
-      <p>Dara benar-benar happy bisa bikin ini buat kamu. Semangat terus di babak baru! jangan lupa bahagia yaa.</p>
-      <div class="mini-minion">🐥🐥🐥</div>
+      <p>aku seneng bisa bikin web ini buat kamuu, semoga suka dan kamu seneng yaaa, maaf kalau masii banyak kurangnyaa untuk web inii</p>
     </div>
+    <!-- TEMPAT PESAN KESAN AKAN MUNCUL -->
+    <div id="closingPesan" style="margin-top: 20px; background: #fff0b5; padding: 15px; border-radius: 25px; display: none;"></div>
+    <br>
     <button id="restartFunBtn" class="btn-secondary">🔄 ulang petualangan?</button>
   </div>
-  <div class="footer-global">✨ DARA! ✨</div>
+</div>
+
+<!-- GLOBAL FOOTER -->
+<div class="global-footer">
+  <span>🐥 made with love by Dara 🐥</span>
 </div>
 
 <script src="script.js"></script>
