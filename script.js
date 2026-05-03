@@ -144,7 +144,7 @@ minion.addEventListener('click', (e) => {
 startGameBtn.addEventListener('click', startGame);
 gameNextBtn.addEventListener('click', () => showPage(3));
 
-// ========== YES/NO (URUT & 8 KLIK SAMPAI HILANG) ==========
+// ========== YES/NO (GERAKAN NO KECIL) ==========
 const gifList = [
   "./assets/gif/mimo.gif",
   "./assets/gif/what.gif",
@@ -179,10 +179,21 @@ function moveNoButtonRandomly() {
   if (!yesnoWrapper || !noBtn) return;
   const wrapperRect = yesnoWrapper.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
-  const maxX = Math.max(0, wrapperRect.width - btnRect.width - 10);
-  const maxY = Math.max(0, wrapperRect.height - btnRect.height - 10);
-  noBtn.style.left = Math.random() * maxX + 'px';
-  noBtn.style.top = Math.random() * maxY + 'px';
+  // Pusat wrapper
+  const centerX = wrapperRect.width / 2;
+  const centerY = wrapperRect.height / 2;
+  // Ukuran tombol
+  const btnW = btnRect.width;
+  const btnH = btnRect.height;
+  // Batas maksimal pergeseran ±40px (jaga jangan sampai keluar wrapper)
+  const maxOffsetX = Math.min(40, (wrapperRect.width - btnW) / 2);
+  const maxOffsetY = Math.min(40, (wrapperRect.height - btnH) / 2);
+  const offsetX = (Math.random() * 2 - 1) * maxOffsetX;
+  const offsetY = (Math.random() * 2 - 1) * maxOffsetY;
+  // Terapkan posisi
+  noBtn.style.position = 'relative';
+  noBtn.style.left = offsetX + 'px';
+  noBtn.style.top = offsetY + 'px';
 }
 
 function enlargeYesButton() {
@@ -232,7 +243,6 @@ yesBtn.addEventListener('click', () => {
 
   if (afterYesBtn) {
     afterYesBtn.style.display = 'inline-block';
-    // supaya listener gak numpuk
     afterYesBtn.replaceWith(afterYesBtn.cloneNode(true));
     const newAfterYesBtn = document.getElementById('afterYesNextBtn');
     newAfterYesBtn.addEventListener('click', () => showPage(4));
@@ -361,7 +371,6 @@ giftBoxes.forEach(box => {
     if (openedGifts[idx]) return;
     giftDetail.style.display = 'block';
     giftDetailImg.src = gifts[idx].img;
-    // PERBESAR GAMBAR: medal & sertif 300px, bunga 250px
     if (idx === 0 || idx === 1) {
       giftDetailImg.style.width = '300px';
     } else {
@@ -377,13 +386,12 @@ giftBoxes.forEach(box => {
 
 giftBackBtn.addEventListener('click', () => {
   giftDetail.style.display = 'none';
-  giftDetailImg.style.width = ''; // reset ukuran
+  giftDetailImg.style.width = '';
 });
 
 giftNextBtn.addEventListener('click', () => {
   showPage('7b');
 });
-
 
 // ========== GALERI MUSEUM ==========
 const galleryImages = [
@@ -407,12 +415,10 @@ document.getElementById('galleryNextBtn')?.addEventListener('click', () => showP
 // ========== CLOSING ==========
 document.getElementById('restartFunBtn')?.addEventListener('click', () => location.reload());
 
-// Pastikan saat load pertama, body sudah berkelas intro-active jika page1 aktif
 if (document.getElementById('page1').classList.contains('active-page')) {
   document.body.classList.add('intro-active');
 }
 
-// Flash notification (buat yes/no)
 function showFlashMessage(message, duration = 2000) {
   const flash = document.createElement('div');
   flash.className = 'flash-notification';
